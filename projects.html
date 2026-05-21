@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>校园与社会 · 魏心琪</title>
+    <title>研究项目 · 魏心琪</title>
     <style>
         * {
             margin: 0;
@@ -57,13 +57,13 @@
             padding-left: 1rem;
         }
 
-        /* 校园经历条目（无时间轴装饰） */
-        .campus-item {
+        /* 项目条目（无时间轴圆点） */
+        .project-item {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
-        .campus-left {
+        .project-left {
             flex-shrink: 0;
             width: 85px;
             text-align: right;
@@ -72,43 +72,73 @@
             color: #5a6e8a;
             padding-top: 0.2rem;
         }
-        .campus-right {
+        .project-right {
             flex: 1;
         }
-        .campus-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #111;
+
+        /* 标题行：flex 布局，奖项右对齐 */
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
             margin-bottom: 0.25rem;
         }
-        .campus-org {
-            font-size: 0.9rem;
-            color: #3a5a7a;
-            margin-bottom: 0.5rem;
-            border-left: 2px solid #dce5f0;
-            padding-left: 0.75rem;
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #111;
         }
-        .campus-description {
-            margin: 0.5rem 0 0.75rem 0;
-            padding-left: 0.25rem;
+        .project-award {
+            background: #f0f2f5;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #2c5a7a;
+            white-space: nowrap;
         }
-        .campus-description p {
-            margin-bottom: 0.4rem;
+        .project-role {
+            font-size: 0.85rem;
+            color: #5a6e8a;
+            margin-bottom: 0.75rem;
+        }
+
+        /* 小标题突出 */
+        .section-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem 0;
+            color: #1a5d9c;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.2rem;
+            display: inline-block;
+        }
+        .project-description p {
             font-size: 0.9rem;
             color: #2c3e66;
+            margin-bottom: 0.6rem;
             line-height: 1.5;
+        }
+        .abstract {
+            background: #fafbfc;
+            padding: 1rem;
+            border-left: 3px solid #1a5d9c;
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+            color: #2d4a6e;
+            line-height: 1.6;
         }
         .btn-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.5rem;
+            gap: 0.8rem;
+            margin: 1rem 0 0.5rem;
         }
         .doc-btn {
             font-size: 0.7rem;
             background: none;
             border: 1px solid #cbd5e1;
-            padding: 0.2rem 0.8rem;
+            padding: 0.3rem 1rem;
             border-radius: 20px;
             cursor: pointer;
             color: #2c3e66;
@@ -118,56 +148,6 @@
         }
         .doc-btn:hover {
             background: #f0f2f5;
-        }
-
-        /* 个人技能区域 */
-        .skills-section {
-            margin-top: 3rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
-        }
-        .skills-title {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.3px;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .skill-category {
-            background: #fafbfc;
-            padding: 1rem;
-            border-radius: 12px;
-        }
-        .skill-category h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: #1a5d9c;
-            border-left: 2px solid #1a5d9c;
-            padding-left: 0.6rem;
-        }
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .skill-tag {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            color: #2c3e66;
-        }
-        .inline-buttons {
-            display: inline-flex;
-            gap: 0.3rem;
-            margin-left: 0.5rem;
-            vertical-align: middle;
         }
 
         footer {
@@ -181,9 +161,10 @@
 
         @media (max-width: 700px) {
             .container { padding: 1rem 1rem 2rem 1rem; }
-            .campus-left { width: 65px; font-size: 0.7rem; }
-            .campus-title { font-size: 1rem; }
-            .skills-grid { grid-template-columns: 1fr; }
+            .project-left { width: 65px; font-size: 0.7rem; }
+            .project-title { font-size: 1rem; }
+            .title-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+            .project-award { white-space: normal; align-self: flex-start; }
             .nav-links { gap: 1rem; }
         }
     </style>
@@ -203,105 +184,62 @@
     </div>
 
     <div class="container">
-        <div class="page-title">校园与社会</div>
+        <div class="page-title">学术项目</div>
 
-        <!-- 新媒体工作部 -->
-        <div class="campus-item">
-            <div class="campus-left">2023.09<br>至今</div>
-            <div class="campus-right">
-                <div class="campus-title">新媒体实习生</div>
-                <div class="campus-org">安泰新媒体工作部</div>
-                <div class="campus-description">
-                    <p>负责学院官方公众号新闻稿撰写、秀米排版；作为记者参与学院重大活动（健康战略与发展研究院成立会/安泰战略咨询会）。</p>
+        <!-- 项目1：大语言模型 -->
+        <div class="project-item">
+            <div class="project-left">2025.02<br>2025.10</div>
+            <div class="project-right">
+                <div class="title-row">
+                    <span class="project-title">大语言模型在上市公司财务文本分析上的应用</span>
+                    <span class="project-award">校级评级 A</span>
                 </div>
+                <div class="project-role">项目组长</div>
+
+                <div class="section-subtitle">项目描述</div>
+                <div class="project-description">
+                    <p>利用大语言模型提取管理层分析中的文本风险披露广度、年报中非文本信息图片数量和内容分类、以及业绩说明会攻防相对和绝对水平等多维特征，并通过计量模型实证检验这些创新指标对会计绩效与股票回报率的预测能力。</p>
+                </div>
+
+                <div class="section-subtitle">个人贡献</div>
+                <div class="project-description">
+                    <p>本地部署大语言模型并对 3w+ 条数据进行清洗与可视化，提升实证分析、论文研究撰写能力以及团队领导力。</p>
+                </div>
+
+                <div class="section-subtitle">论文摘要</div>
+                <div class="abstract">
+                    随着资本市场信息披露形式的多元化，文本和图像信息已成为企业传递价值信号的重要载体。大语言模型（LLM）作为先进的人工智能技术，为财务文本分析提供了创新工具。本研究基于信息不对称理论以及信号传递理论，以2014-2023年A股上市公司为样本，设立“大语言模型在上市公司财务文本分析上的应用”为主题，整合了三个维度的实证研究：上市公司年度报告图片信息披露、管理层讨论文本风险披露以及业绩说明会问答文本信息披露，系统探讨了这些信息披露形式对公司会计绩效和市场表现的影响。研究发现，在图片信息披露方面，有效图片数量与公司会计绩效呈正相关，但与市场回报无显著影响；财务类与产品类图片能显著提升会计绩效和市场回报，而产品类图片与会计绩效存在倒U型关系，管理类图片则未产生积极效应；另外，图片依企业规模与行业特征呈现显著的异质性。在风险披露方面，基于扎根理论与风险框架定义的风险披露广度指标与未来经营业绩和市场存在稳健的负面效应，且异质性分析显示负向影响在主板、大规模及外资企业中更为显著。在业绩说明会问答文本方面，通过构建攻防距离与攻防博弈比指标变量，发现管理层高质量回应（弱攻强守）能提升公司会计绩效和市场回报，而投资者质疑强度与回应效力失衡（强攻弱守）则导致会计绩效显著下降；另外，行业异质性检验揭示了差异化机制：卫生行业依赖信任建设，文体娱乐业受益于博弈话题性，住宿餐饮业则因运营导向削弱沟通价值。本研究整体表明，大语言模型能够有效挖掘多模态信息披露的深层价值，投资者更关注信息的实质内容而非数量，其解读逻辑受公司情境调节。研究成果拓展了信息披露的研究维度，为上市公司优化信息披露策略、投资者进行决策以及监管者实施风险预警提供了经验证据和实用工具。
+                </div>
+
                 <div class="btn-group">
-                    <button class="doc-btn" data-src="images/campus/news_sample.jpg">查看工作照片</button>
+                    <button class="doc-btn" data-src="pdfs/projects/llm_paper.pdf">查看论文</button>
+                    <button class="doc-btn" data-src="https://github.com/yourusername/llm-financial">查看代码仓库</button>
                 </div>
             </div>
         </div>
 
-        <!-- 安泰青年志愿队 -->
-        <div class="campus-item">
-            <div class="campus-left">2023.09<br>至今</div>
-            <div class="campus-right">
-                <div class="campus-title">干事</div>
-                <div class="campus-org">安泰青年志愿队</div>
-                <div class="campus-description">
-                    <p>负责学校及外部机构日常人员招募/策划；参与志愿者社群扩招、中福会义卖、关爱自闭症儿童等活动。</p>
+        <!-- 项目2：安泰杯 -->
+        <div class="project-item">
+            <div class="project-left">2025.12</div>
+            <div class="project-right">
+                <div class="title-row">
+                    <span class="project-title">第九届“安泰杯”上市公司投资分析挑战赛</span>
+                    <span class="project-award">优秀团队奖</span>
                 </div>
-                <div class="btn-group">
-                    <button class="doc-btn" data-src="images/campus/volunteer.jpg">查看工作照片</button>
-                </div>
-            </div>
-        </div>
+                <div class="project-role">核心成员</div>
 
-        <!-- 家教志愿者 -->
-        <div class="campus-item">
-            <div class="campus-left">2024.09<br>至今</div>
-            <div class="campus-right">
-                <div class="campus-title">家教志愿者</div>
-                <div class="campus-org">上海明汇儿童发展中心</div>
-                <div class="campus-description">
-                    <p>为家庭困难的初三女生及五年级女生提供英语学业指导，帮助其月考(&lt;90)提升至中考(123)，单科分数提升30+分。</p>
+                <div class="section-subtitle">报告概述</div>
+                <div class="project-description">
+                    <p>针对亚朵股份有限公司，深入分析公司业务、行业地位、财务情况、估值建模等维度。</p>
                 </div>
-                <div class="btn-group">
-                    <button class="doc-btn" data-src="pdfs/tutoring_notes.pdf">查看家教笔记</button>
-                    <button class="doc-btn" data-src="images/campus/tutoring_result.jpg">查看家教成果</button>
-                </div>
-            </div>
-        </div>
 
-        <!-- 个人技能 -->
-        <div class="skills-section">
-            <div class="skills-title">个人技能</div>
-            <div class="skills-grid">
-                <!-- 语言技能 -->
-                <div class="skill-category">
-                    <h3>语言</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">CET-6 639分</span>
-                        <button class="doc-btn" data-src="pdfs/certs/cet6.pdf" style="margin-left: 0.2rem;">查看证书</button>
-                        <span class="skill-tag">托福 110分</span>
-                        <button class="doc-btn" data-src="pdfs/certs/toefl.pdf">查看成绩单</button>
-                        <span class="skill-tag">日语 N3</span>
-                    </div>
+                <div class="section-subtitle">个人贡献</div>
+                <div class="project-description">
+                    <p>运用 iFind、洞见研报等平台搜集信息，分析近年来公司的经营效率、盈利能力、财务风险以及同业对比，提升快速数据分析能力、财务报表分析、团队高效交流合作能力，培养商业逻辑思维与洞察。</p>
                 </div>
-                <!-- 软件技能 -->
-                <div class="skill-category">
-                    <h3>软件与工具</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Wind</span>
-                        <span class="skill-tag">iFind</span>
-                        <span class="skill-tag">Choice</span>
-                        <span class="skill-tag">Qeubee</span>
-                        <span class="skill-tag">Dealing Matrix</span>
-                        <span class="skill-tag">Ideal</span>
-                        <span class="skill-tag">Pr / Au / Melodyne</span>
-                        <span class="skill-tag">秀米</span>
-                        <span class="skill-tag">Office</span>
-                    </div>
-                </div>
-                <!-- 编程语言 -->
-                <div class="skill-category">
-                    <h3>编程</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Markdown</span>
-                    </div>
-                </div>
-                <!-- 兴趣爱好（含B站链接） -->
-                <div class="skill-category">
-                    <h3>兴趣爱好</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">游泳</span>
-                        <span class="skill-tag">排球</span>
-                        <span class="skill-tag">书法 (软笔业余8级)</span>
-                        <span class="skill-tag">电子琴 (业余10级)</span>
-                        <span class="skill-tag">
-                            唱歌
-                            <a href="https://space.bilibili.com/你的B站UID" target="_blank" class="doc-btn" style="margin-left: 0.3rem;">B站主页</a>
-                        </span>
-                    </div>
+
+                <div class="btn-group">
+                    <button class="doc-btn" data-src="pdfs/projects/antai_cup_report.pdf">查看分析报告</button>
                 </div>
             </div>
         </div>
@@ -311,7 +249,7 @@
         </footer>
     </div>
 
-    <!-- 模态框（查看图片/PDF） -->
+    <!-- 模态框 -->
     <div id="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
         <span id="modal-close" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
         <iframe id="modal-pdf" style="width:90%; height:90%; background:white;" frameborder="0"></iframe>
@@ -325,6 +263,10 @@
         const closeBtn = document.getElementById('modal-close');
 
         function openFile(src) {
+            if (src.startsWith('http')) {
+                window.open(src, '_blank');
+                return;
+            }
             if (src.toLowerCase().endsWith('.pdf')) {
                 modalPdf.style.display = 'block';
                 modalImg.style.display = 'none';
@@ -339,7 +281,7 @@
         }
 
         document.querySelectorAll('.doc-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', function() {
                 const src = this.getAttribute('data-src');
                 if (src) {
                     openFile(src);
