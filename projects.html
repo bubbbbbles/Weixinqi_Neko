@@ -3,45 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>研究项目 - 魏心琪</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>研究项目 · 魏心琪</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e66;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #1a5d9c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem 2rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a5d9c;
+            padding-left: 1rem;
+        }
+
+        /* 项目条目（无时间轴圆点，仅左右对齐） */
+        .project-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .project-left {
+            flex-shrink: 0;
+            width: 85px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #5a6e8a;
+            padding-top: 0.2rem;
+        }
+        .project-right {
+            flex: 1;
+        }
+        .project-header {
+            margin-bottom: 0.5rem;
+        }
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #111;
+        }
+        .project-role {
+            font-size: 0.85rem;
+            color: #5a6e8a;
+            margin-top: 0.1rem;
+        }
+        .project-award {
+            display: inline-block;
+            background: #f0f2f5;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #2c5a7a;
+            margin: 0.5rem 0 0.75rem 0;
+        }
+        .section-subtitle {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.8rem 0 0.3rem 0;
+            color: #2c3e66;
+            border-bottom: 1px dashed #e2e8f0;
+            display: inline-block;
+        }
+        .project-description p {
+            font-size: 0.9rem;
+            color: #2c3e66;
+            margin-bottom: 0.6rem;
+            line-height: 1.5;
+        }
+        .abstract {
+            background: #fafbfc;
+            padding: 1rem;
+            border-left: 3px solid #dce5f0;
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+            color: #2d4a6e;
+            line-height: 1.6;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0 0.5rem;
+        }
+        .doc-btn {
+            font-size: 0.7rem;
+            background: none;
+            border: 1px solid #cbd5e1;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #2c3e66;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .doc-btn:hover {
+            background: #f0f2f5;
+        }
+
+        footer {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem 1rem 2rem 1rem; }
+            .project-left { width: 65px; font-size: 0.7rem; }
+            .project-title { font-size: 1rem; }
+            .nav-links { gap: 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <div class="navbar">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="education.html">教育经历</a></li>
                 <li><a href="internships.html">实习经历</a></li>
-                <li><a href="projects.html">研究/项目</a></li>
+                <li><a href="projects.html">研究项目</a></li>
                 <li><a href="campus.html">校园与社会</a></li>
                 <li><a href="resources.html">资源下载</a></li>
             </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>🤖 学术研究项目</h2>
-            <div class="project">
-                <h3>大语言模型在上市公司财务文本分析上的应用 <span>项目组长 · 2025.02-2025.10</span></h3>
-                <p><strong>项目描述：</strong>利用大语言模型提取管理层分析中的文本风险披露广度、年报中非文本信息图片数量和内容分类、业绩说明会攻防相对水平等多维特征，并通过计量模型实证检验这些指标对会计绩效与股票回报率的预测能力。</p>
-                <p><strong>个人贡献：</strong>本地部署大语言模型并对3w+条数据进行清洗与可视化，撰写研究论文。</p>
-                <button class="proof-btn" data-src="pdfs/projects/llm_paper.pdf">📑 查看工作论文</button>
-                <button class="proof-btn" data-src="https://github.com/yourusername/llm-financial">💻 查看代码仓库</button>
-            </div>
+        </div>
+    </div>
 
-            <div class="project">
-                <h3>第九届"安泰杯"上市公司投资分析挑战赛 <span>核心成员 · 2025.12</span></h3>
-                <p><strong>报告概述：</strong>针对亚朵股份有限公司，深入分析公司业务、行业地位、财务情况、估值建模等维度。</p>
-                <p><strong>负责部分：</strong>运用ifind、洞见研报等平台搜集信息，分析经营效率、盈利能力、财务风险及同业对比。</p>
-                <button class="proof-btn" data-src="pdfs/projects/antai_cup_report.pdf">📊 查看分析报告</button>
+    <div class="container">
+        <div class="page-title">学术项目</div>
+
+        <!-- 项目1：大语言模型 -->
+        <div class="project-item">
+            <div class="project-left">2025.02<br>2025.10</div>
+            <div class="project-right">
+                <div class="project-header">
+                    <div class="project-title">大语言模型在上市公司财务文本分析上的应用</div>
+                    <div class="project-role">项目组长</div>
+                </div>
+                <div class="project-award">校级评级 A</div>
+                
+                <div class="section-subtitle">项目描述</div>
+                <div class="project-description">
+                    <p>利用大语言模型提取管理层分析中的文本风险披露广度、年报中非文本信息图片数量和内容分类、以及业绩说明会攻防相对和绝对水平等多维特征，并通过计量模型实证检验这些创新指标对会计绩效与股票回报率的预测能力。</p>
+                </div>
+
+                <div class="section-subtitle">个人贡献</div>
+                <div class="project-description">
+                    <p>本地部署大语言模型并对 3w+ 条数据进行清洗与可视化，提升实证分析、论文研究撰写能力以及团队领导力。</p>
+                </div>
+
+                <div class="section-subtitle">论文摘要</div>
+                <div class="abstract">
+                    随着资本市场信息披露形式的多元化，文本和图像信息已成为企业传递价值信号的重要载体。大语言模型（LLM）作为先进的人工智能技术，为财务文本分析提供了创新工具。本研究基于信息不对称理论以及信号传递理论，以2014-2023年A股上市公司为样本，设立“大语言模型在上市公司财务文本分析上的应用”为主题，整合了三个维度的实证研究：上市公司年度报告图片信息披露、管理层讨论文本风险披露以及业绩说明会问答文本信息披露，系统探讨了这些信息披露形式对公司会计绩效和市场表现的影响。研究发现，在图片信息披露方面，有效图片数量与公司会计绩效呈正相关，但与市场回报无显著影响；财务类与产品类图片能显著提升会计绩效和市场回报，而产品类图片与会计绩效存在倒U型关系，管理类图片则未产生积极效应；另外，图片依企业规模与行业特征呈现显著的异质性。在风险披露方面，基于扎根理论与风险框架定义的风险披露广度指标与未来经营业绩和市场存在稳健的负面效应，且异质性分析显示负向影响在主板、大规模及外资企业中更为显著。在业绩说明会问答文本方面，通过构建攻防距离与攻防博弈比指标变量，发现管理层高质量回应（弱攻强守）能提升公司会计绩效和市场回报，而投资者质疑强度与回应效力失衡（强攻弱守）则导致会计绩效显著下降；另外，行业异质性检验揭示了差异化机制：卫生行业依赖信任建设，文体娱乐业受益于博弈话题性，住宿餐饮业则因运营导向削弱沟通价值。本研究整体表明，大语言模型能够有效挖掘多模态信息披露的深层价值，投资者更关注信息的实质内容而非数量，其解读逻辑受公司情境调节。研究成果拓展了信息披露的研究维度，为上市公司优化信息披露策略、投资者进行决策以及监管者实施风险预警提供了经验证据和实用工具。
+                </div>
+
+                <div class="btn-group">
+                    <button class="doc-btn" data-src="pdfs/projects/llm_paper.pdf">查看论文</button>
+                    <button class="doc-btn" data-src="https://github.com/yourusername/llm-financial">查看代码仓库</button>
+                </div>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 魏心琪</p>
-    </footer>
-    <script src="js/main.js"></script>
-    <div id="modal" class="modal"><span class="close">&times;</span><img class="modal-content" id="modal-img"></div>
+        </div>
+
+        <!-- 项目2：安泰杯 -->
+        <div class="project-item">
+            <div class="project-left">2025.12</div>
+            <div class="project-right">
+                <div class="project-header">
+                    <div class="project-title">第九届“安泰杯”上市公司投资分析挑战赛</div>
+                    <div class="project-role">核心成员</div>
+                </div>
+                <div class="project-award">优秀团队奖</div>
+
+                <div class="section-subtitle">报告概述</div>
+                <div class="project-description">
+                    <p>针对亚朵股份有限公司，深入分析公司业务、行业地位、财务情况、估值建模等维度。</p>
+                </div>
+
+                <div class="section-subtitle">个人贡献</div>
+                <div class="project-description">
+                    <p>运用 iFind、洞见研报等平台搜集信息，分析近年来公司的经营效率、盈利能力、财务风险以及同业对比，提升快速数据分析能力、财务报表分析、团队高效交流合作能力，培养商业逻辑思维与洞察。</p>
+                </div>
+
+                <div class="btn-group">
+                    <button class="doc-btn" data-src="pdfs/projects/antai_cup_report.pdf">查看分析报告</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            © 2025 魏心琪 | 最后更新 2026年5月
+        </footer>
+    </div>
+
+    <!-- 模态框（用于显示PDF或外部链接） -->
+    <div id="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+        <span id="modal-close" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <iframe id="modal-pdf" style="width:90%; height:90%; background:white;" frameborder="0"></iframe>
+        <img id="modal-img" style="max-width:90%; max-height:90%; display:none; margin:auto;">
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const modalPdf = document.getElementById('modal-pdf');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.getElementById('modal-close');
+
+        function openFile(src) {
+            // 如果是 http 或 https 链接（代码仓库），直接打开新标签页
+            if (src.startsWith('http')) {
+                window.open(src, '_blank');
+                return;
+            }
+            if (src.toLowerCase().endsWith('.pdf')) {
+                modalPdf.style.display = 'block';
+                modalImg.style.display = 'none';
+                modalPdf.src = src;
+                modal.style.display = 'flex';
+            } else {
+                modalPdf.style.display = 'none';
+                modalImg.style.display = 'block';
+                modalImg.src = src;
+                modal.style.display = 'flex';
+            }
+        }
+
+        document.querySelectorAll('.doc-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const src = this.getAttribute('data-src');
+                if (src) {
+                    openFile(src);
+                } else {
+                    alert('文件暂未上传');
+                }
+            });
+        });
+
+        closeBtn.onclick = () => {
+            modal.style.display = 'none';
+            modalPdf.src = '';
+            modalImg.src = '';
+        };
+        window.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalPdf.src = '';
+                modalImg.src = '';
+            }
+        };
+    </script>
 </body>
 </html>
