@@ -3,41 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>资源下载 - 魏心琪</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>个人分享 · 魏心琪</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e66;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #1a5d9c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem 2rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a5d9c;
+            padding-left: 1rem;
+        }
+
+        /* 分享区块 */
+        .share-section {
+            margin-bottom: 2.5rem;
+        }
+        .section-heading {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: #1a5d9c;
+        }
+        .file-list {
+            list-style: none;
+            margin: 0;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        .file-name {
+            font-size: 0.95rem;
+            color: #2c3e66;
+            flex: 1;
+        }
+        .file-link {
+            font-size: 0.7rem;
+            background: none;
+            border: 1px solid #cbd5e1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #2c3e66;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .file-link:hover {
+            background: #f0f2f5;
+        }
+        .empty-msg {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        footer {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem 1rem 2rem 1rem; }
+            .nav-links { gap: 1rem; }
+            .file-item { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <div class="navbar">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="education.html">教育经历</a></li>
                 <li><a href="internships.html">实习经历</a></li>
-                <li><a href="projects.html">研究/项目</a></li>
+                <li><a href="projects.html">研究项目</a></li>
                 <li><a href="campus.html">校园与社会</a></li>
-                <li><a href="resources.html">资源下载</a></li>
+                <li><a href="resources.html">个人分享</a></li>
             </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>📂 资源下载</h2>
-            <ul class="resource-list">
-                <li><a href="pdfs/full_resume.pdf" download>📄 完整简历（PDF）</a></li>
-                <li><a href="pdfs/ranking_proof.pdf" target="_blank">📊 专业排名证明</a></li>
-                <li><a href="pdfs/transcript.pdf" target="_blank">📚 本科成绩单</a></li>
-                <li><a href="https://github.com/yourusername" target="_blank">💻 个人GitHub（学习笔记/代码）</a></li>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-title">个人分享</div>
+
+        <!-- 简历（PDF） -->
+        <div class="share-section">
+            <div class="section-heading">简历</div>
+            <ul class="file-list">
+                <li class="file-item">
+                    <span class="file-name">魏心琪_简历_中文.pdf</span>
+                    <a href="pdfs/resume_cn.pdf" class="file-link" download>下载</a>
+                </li>
+                <li class="file-item">
+                    <span class="file-name">Wei Xinqi_Resume_English.pdf</span>
+                    <a href="pdfs/resume_en.pdf" class="file-link" download>下载</a>
+                </li>
             </ul>
-        </section>
-        <section>
-            <h2>📝 一些个人感想</h2>
-            <p>这里可以写一些你对学习、研究的思考和感悟，或者记录你在交大、实习中的成长故事。让导师看到你除了成绩之外的独特一面。</p>
-            <p>例如：从会计学到大语言模型——我为什么想探索AI与金融的交叉。</p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 魏心琪</p>
-    </footer>
-    <script src="js/main.js"></script>
+        </div>
+
+        <!-- 学习笔记与项目 -->
+        <div class="share-section">
+            <div class="section-heading">学习笔记与项目</div>
+            <ul class="file-list">
+                <li class="file-item"><span class="file-name">中级微观经济学 学习笔记</span><a href="pdfs/notes/micro_notes.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">回归分析案例 (R/Python)</span><a href="pdfs/notes/regression_cases.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">Python 学生资源管理系统</span><a href="pdfs/notes/student_system.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">建模与优化 学习笔记</span><a href="pdfs/notes/modeling_notes.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">建模与优化 CTPP</span><a href="pdfs/notes/modeling_ctpp.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">企业责任与伦理 CTPP</span><a href="pdfs/notes/ethics_ctpp.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">计量经济学 CTPP</span><a href="pdfs/notes/econometrics_ctpp.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">商务统计学 CTPP</span><a href="pdfs/notes/business_stats_ctpp.pdf" class="file-link" download>下载</a></li>
+                <li class="file-item"><span class="file-name">恒大财务舞弊案例分析</span><a href="pdfs/notes/hengda_case.pdf" class="file-link" download>下载</a></li>
+            </ul>
+        </div>
+
+        <!-- 个人随笔（暂时留空） -->
+        <div class="share-section">
+            <div class="section-heading">个人随笔</div>
+            <div class="empty-msg">随笔整理中，稍后更新……</div>
+        </div>
+
+        <footer>
+            © 2025 魏心琪 | 最后更新 2026年5月
+        </footer>
+    </div>
 </body>
 </html>
