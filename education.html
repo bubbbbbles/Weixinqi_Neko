@@ -3,63 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>教育经历 - 魏心琪</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>教育经历 · 魏心琪</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* 导航栏 (与首页一致) */
+        .navbar {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e66;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #1a5d9c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem 2rem;
+        }
+
+        /* 页面主标题 */
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a5d9c;
+            padding-left: 1rem;
+        }
+
+        /* 时间轴条目 */
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 左侧时间轴装饰 */
+        .timeline-left {
+            flex-shrink: 0;
+            width: 80px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #5a6e8a;
+            padding-top: 0.2rem;
+            position: relative;
+        }
+        .timeline-left::after {
+            content: "";
+            position: absolute;
+            right: -12px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #1a5d9c;
+            border-radius: 50%;
+        }
+        .timeline-left::before {
+            content: "";
+            position: absolute;
+            right: -8px;
+            top: 16px;
+            bottom: -20px;
+            width: 1px;
+            background: #e2e8f0;
+        }
+        .timeline-item:last-child .timeline-left::before {
+            display: none;
+        }
+
+        /* 右侧内容 */
+        .timeline-right {
+            flex: 1;
+            padding-bottom: 0.5rem;
+        }
+        .edu-title {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+        .edu-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #111;
+        }
+        .edu-date {
+            font-size: 0.85rem;
+            color: #5a6e8a;
+            font-family: monospace;
+        }
+        .edu-major {
+            font-size: 0.9rem;
+            color: #3a5a7a;
+            margin-bottom: 0.5rem;
+            border-left: 2px solid #dce5f0;
+            padding-left: 0.75rem;
+        }
+        .edu-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #2c3e66;
+            margin-bottom: 0.75rem;
+        }
+        .edu-stats span {
+            background: #f0f2f5;
+            padding: 0.2rem 0.6rem;
+            border-radius: 16px;
+        }
+        .download-link {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-decoration: none;
+            color: #1a5d9c;
+            border: 1px solid #cbd5e1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-top: 0.3rem;
+            transition: 0.2s;
+        }
+        .download-link:hover {
+            background: #f0f2f5;
+        }
+
+        /* 核心课程部分 */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 2rem 0 1rem 0;
+            letter-spacing: -0.3px;
+            border-bottom: 1px solid #eaeef3;
+            padding-bottom: 0.3rem;
+        }
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .course-tag {
+            background: #f0f2f5;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #2d4a6e;
+        }
+        .download-row {
+            margin: 0.5rem 0 1rem;
+        }
+
+        /* 荣誉奖项 */
+        .award-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .award-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        .award-name {
+            font-size: 0.95rem;
+        }
+        .award-btn {
+            font-size: 0.7rem;
+            background: none;
+            border: 1px solid #cbd5e1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #2c3e66;
+            transition: 0.2s;
+        }
+        .award-btn:hover {
+            background: #f0f2f5;
+        }
+
+        /* 高中/初中单独样式（无时间轴点，但保持对齐） */
+        .simple-edu {
+            margin-bottom: 1.5rem;
+        }
+        .simple-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.3rem;
+        }
+        .simple-school {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .simple-date {
+            font-size: 0.8rem;
+            color: #5a6e8a;
+            font-family: monospace;
+        }
+        .simple-detail {
+            font-size: 0.85rem;
+            color: #3a5a7a;
+            margin-left: 1rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        footer {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem 1rem 2rem 1rem; }
+            .timeline-left { width: 60px; font-size: 0.7rem; }
+            .edu-name { font-size: 1rem; }
+            .nav-links { gap: 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="education.html">教育经历</a></li>
                 <li><a href="internships.html">实习经历</a></li>
-                <li><a href="projects.html">研究/项目</a></li>
+                <li><a href="projects.html">研究项目</a></li>
                 <li><a href="campus.html">校园与社会</a></li>
                 <li><a href="resources.html">资源下载</a></li>
             </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>🎓 教育背景</h2>
-            <p><strong>上海交通大学 安泰经济与管理学院</strong> · 会计学（辅修：大数据管理与应用） · 2023.09-至今</p>
-            <p>📈 GPA：4.02/4.30 (全部学积分92.36/100) | 🥇 专业排名：1/30</p>
-            <p><a href="pdfs/ranking_proof.pdf" target="_blank">📄 查看排名证明</a></p>
-        </section>
-
-        <section>
-            <h2>📚 核心课程</h2>
-            <div class="course-list">
-                <span class="course-tag">管理会计 (97)</span>
-                <span class="course-tag">数据结构 (96)</span>
-                <span class="course-tag">会计学原理 (95)</span>
-                <span class="course-tag">经济学原理 (95)</span>
-                <span class="course-tag">管理科学 (95)</span>
-                <span class="course-tag">财务管理 (93)</span>
-                <span class="course-tag">管理学原理 (91)</span>
-            </div>
-        </section>
-
-        <section>
-            <h2>🏅 荣誉奖项</h2>
-            <ul class="awards-list">
-                <li><strong>2024-2025学年 国家奖学金</strong> <button class="proof-btn" data-src="images/awards/guojiajiang.jpg">📜 查看证书</button></li>
-                <li><strong>2024-2025学年 上海交通大学三好学生</strong> <button class="proof-btn" data-src="images/awards/sanhao.jpg">📜 查看证书</button></li>
-                <li><strong>2025-2026学年 上海交通大学优秀团员</strong> <button class="proof-btn" data-src="images/awards/youxiutuanyuan.jpg">📜 查看证书</button></li>
-                <li><strong>2023-2024学年 本科生优秀奖学金</strong></li>
-                <li><strong>全国大学生英语竞赛 二等奖</strong> <button class="proof-btn" data-src="images/awards/neccs.jpg">📜 查看证书</button></li>
-                <li><strong>第九届"安泰杯"上市公司投资分析挑战赛 优秀表现团队奖</strong> <button class="proof-btn" data-src="images/awards/antai_cup.jpg">📜 查看证书</button></li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 魏心琪</p>
-    </footer>
-    <script src="js/main.js"></script>
-    <!-- 模态框组件用于展示大图 -->
-    <div id="modal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modal-img">
+        </div>
     </div>
+
+    <div class="container">
+        <div class="page-title">教育经历</div>
+
+        <!-- 大学（时间轴样式） -->
+        <div class="timeline-item">
+            <div class="timeline-left">2023.09<br>至今</div>
+            <div class="timeline-right">
+                <div class="edu-title">
+                    <span class="edu-name">上海交通大学 · 安泰经济与管理学院</span>
+                    <span class="edu-date">2023.09 – 至今</span>
+                </div>
+                <div class="edu-major">会计学（辅修：大数据管理与应用）</div>
+                <div class="edu-stats">
+                    <span>GPA 4.02/4.30</span>
+                    <span>全部学积分 92.36/100</span>
+                    <span>专业排名 1/30</span>
+                </div>
+                <div class="download-row">
+                    <a href="pdfs/ranking_proof.pdf" class="download-link" target="_blank">📄 下载排名证明</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心课程 -->
+        <div class="section-title">核心课程</div>
+        <div class="course-list">
+            <span class="course-tag">建模与优化 (98)</span>
+            <span class="course-tag">管理会计 (97)</span>
+            <span class="course-tag">回归分析 (97)</span>
+            <span class="course-tag">数据结构 (96)</span>
+            <span class="course-tag">Python程序设计 (96)</span>
+            <span class="course-tag">会计学原理 (95)</span>
+            <span class="course-tag">经济学原理 (95)</span>
+            <span class="course-tag">管理科学 (95)</span>
+            <span class="course-tag">财务管理 (93)</span>
+            <span class="course-tag">中级财务会计 (92)</span>
+            <span class="course-tag">计量经济学 (91)</span>
+            <span class="course-tag">管理学原理 (91)</span>
+        </div>
+        <div class="download-row">
+            <a href="pdfs/transcript.pdf" class="download-link" target="_blank">📊 下载成绩单</a>
+        </div>
+
+        <!-- 高中（简洁样式） -->
+        <div class="simple-edu">
+            <div class="simple-header">
+                <span class="simple-school">上海交通大学附属中学嘉定分校</span>
+                <span class="simple-date">2020.09 – 2023.06</span>
+            </div>
+            <div class="simple-detail">
+                高考 593/660 | 上海市排名 965 | 物生地 | 英才班班长
+            </div>
+        </div>
+
+        <!-- 初中 -->
+        <div class="simple-edu">
+            <div class="simple-header">
+                <span class="simple-school">上海市女子第三中学</span>
+                <span class="simple-date">2016.09 – 2020.06</span>
+            </div>
+            <div class="simple-detail">
+                中考 613.5/630 | 上海市长宁区状元 | 英语辩论社 | 英国泽西女子学校暑期交换
+            </div>
+        </div>
+
+        <!-- 荣誉奖项 -->
+        <div class="section-title">荣誉奖项</div>
+        <ul class="award-list">
+            <li class="award-item"><span class="award-name">2024-2025学年 国家奖学金</span><button class="award-btn" data-src="images/awards/guojiajiang.jpg">查看证书</button></li>
+            <li class="award-item"><span class="award-name">2024-2025学年 上海交通大学三好学生</span><button class="award-btn" data-src="images/awards/sanhao.jpg">查看证书</button></li>
+            <li class="award-item"><span class="award-name">2025-2026学年 上海交通大学优秀团员</span><button class="award-btn" data-src="images/awards/youxiutuanyuan.jpg">查看证书</button></li>
+            <li class="award-item"><span class="award-name">2023-2024学年 本科生优秀奖学金</span><button class="award-btn" data-src="images/awards/scholarship.jpg">查看证书</button></li>
+            <li class="award-item"><span class="award-name">全国大学生英语竞赛 二等奖</span><button class="award-btn" data-src="images/awards/neccs.jpg">查看证书</button></li>
+            <li class="award-item"><span class="award-name">第九届“安泰杯”上市公司投资分析挑战赛 优秀表现团队奖</span><button class="award-btn" data-src="images/awards/antai_cup.jpg">查看证书</button></li>
+        </ul>
+
+        <footer>
+            © 2025 魏心琪 | 最后更新 2026年5月
+        </footer>
+    </div>
+
+    <!-- 模态框（查看证书图片） -->
+    <div id="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+        <span id="modal-close" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <img id="modal-img" style="max-width:90%; max-height:90%; margin:auto; display:block;">
+    </div>
+
+    <script>
+        // 模态框逻辑
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.getElementById('modal-close');
+
+        document.querySelectorAll('.award-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const src = this.getAttribute('data-src');
+                if (src) {
+                    modal.style.display = 'flex';
+                    modalImg.src = src;
+                } else {
+                    alert('证书图片暂未上传');
+                }
+            });
+        });
+        closeBtn.onclick = () => { modal.style.display = 'none'; };
+        window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+    </script>
 </body>
 </html>
