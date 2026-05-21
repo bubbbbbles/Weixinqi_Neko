@@ -3,54 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>校园与社会 - 魏心琪</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>校园与社会 · 魏心琪</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e66;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #1a5d9c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem 2rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a5d9c;
+            padding-left: 1rem;
+        }
+
+        /* 校园经历条目（无时间轴装饰） */
+        .campus-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .campus-left {
+            flex-shrink: 0;
+            width: 85px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #5a6e8a;
+            padding-top: 0.2rem;
+        }
+        .campus-right {
+            flex: 1;
+        }
+        .campus-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 0.25rem;
+        }
+        .campus-org {
+            font-size: 0.9rem;
+            color: #3a5a7a;
+            margin-bottom: 0.5rem;
+            border-left: 2px solid #dce5f0;
+            padding-left: 0.75rem;
+        }
+        .campus-description {
+            margin: 0.5rem 0 0.75rem 0;
+            padding-left: 0.25rem;
+        }
+        .campus-description p {
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            color: #2c3e66;
+            line-height: 1.5;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+        .doc-btn {
+            font-size: 0.7rem;
+            background: none;
+            border: 1px solid #cbd5e1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #2c3e66;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .doc-btn:hover {
+            background: #f0f2f5;
+        }
+
+        /* 个人技能区域 */
+        .skills-section {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        .skills-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.3px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-category {
+            background: #fafbfc;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+        .skill-category h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1a5d9c;
+            border-left: 2px solid #1a5d9c;
+            padding-left: 0.6rem;
+        }
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-tag {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #2c3e66;
+        }
+        .inline-buttons {
+            display: inline-flex;
+            gap: 0.3rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        footer {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem 1rem 2rem 1rem; }
+            .campus-left { width: 65px; font-size: 0.7rem; }
+            .campus-title { font-size: 1rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <div class="navbar">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="education.html">教育经历</a></li>
                 <li><a href="internships.html">实习经历</a></li>
-                <li><a href="projects.html">研究/项目</a></li>
+                <li><a href="projects.html">研究项目</a></li>
                 <li><a href="campus.html">校园与社会</a></li>
                 <li><a href="resources.html">资源下载</a></li>
             </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>📝 校园经历</h2>
-            <div class="campus-item">
-                <h3>安泰新媒体工作部 · 新媒体实习生 <span>2023.09-至今</span></h3>
-                <p>负责学院官方公众号新闻稿撰写、秀米排版；作为记者参与学院重大活动（健康战略与发展研究院成立会/安泰战略咨询会）。</p>
-                <button class="proof-btn" data-src="images/campus/news_sample.jpg">📰 查看作品示例</button>
-            </div>
-            <div class="campus-item">
-                <h3>安泰青年志愿队 · 干事 <span>2023.09-至今</span></h3>
-                <p>负责学校及外部机构日常人员招募/策划；参与志愿者社群扩招、中福会义卖、关爱自闭症儿童等活动。</p>
-            </div>
-            <div class="campus-item">
-                <h3>上海明汇儿童发展中心 · 家教志愿者 <span>2024.09-至今</span></h3>
-                <p>为家庭困难的初三女生及五年级女生提供英语学业指导，帮助其月考(<90)提升至中考(123)，单科分数提升30+分。</p>
-                <button class="proof-btn" data-src="images/campus/tutoring_photo.jpg">📸 志愿活动照片</button>
-            </div>
-        </section>
+        </div>
+    </div>
 
-        <section>
-            <h2>🌐 语言能力证明</h2>
-            <ul>
-                <li>CET-6: 639分 <button class="proof-btn" data-src="pdfs/certs/cet6.pdf">📜 查看证书</button></li>
-                <li>托福: 110分 <button class="proof-btn" data-src="pdfs/certs/toefl.pdf">📜 查看成绩单</button></li>
-                <li>日语: N3 <button class="proof-btn" data-src="pdfs/certs/jlpt_n3.pdf">📜 查看证书</button></li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 魏心琪</p>
-    </footer>
-    <script src="js/main.js"></script>
-    <div id="modal" class="modal"><span class="close">&times;</span><img class="modal-content" id="modal-img"></div>
+    <div class="container">
+        <div class="page-title">校园与社会</div>
+
+        <!-- 新媒体工作部 -->
+        <div class="campus-item">
+            <div class="campus-left">2023.09<br>至今</div>
+            <div class="campus-right">
+                <div class="campus-title">新媒体实习生</div>
+                <div class="campus-org">安泰新媒体工作部</div>
+                <div class="campus-description">
+                    <p>负责学院官方公众号新闻稿撰写、秀米排版；作为记者参与学院重大活动（健康战略与发展研究院成立会/安泰战略咨询会）。</p>
+                </div>
+                <div class="btn-group">
+                    <button class="doc-btn" data-src="images/campus/news_sample.jpg">查看工作照片</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 安泰青年志愿队 -->
+        <div class="campus-item">
+            <div class="campus-left">2023.09<br>至今</div>
+            <div class="campus-right">
+                <div class="campus-title">干事</div>
+                <div class="campus-org">安泰青年志愿队</div>
+                <div class="campus-description">
+                    <p>负责学校及外部机构日常人员招募/策划；参与志愿者社群扩招、中福会义卖、关爱自闭症儿童等活动。</p>
+                </div>
+                <div class="btn-group">
+                    <button class="doc-btn" data-src="images/campus/volunteer.jpg">查看工作照片</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 家教志愿者 -->
+        <div class="campus-item">
+            <div class="campus-left">2024.09<br>至今</div>
+            <div class="campus-right">
+                <div class="campus-title">家教志愿者</div>
+                <div class="campus-org">上海明汇儿童发展中心</div>
+                <div class="campus-description">
+                    <p>为家庭困难的初三女生及五年级女生提供英语学业指导，帮助其月考(&lt;90)提升至中考(123)，单科分数提升30+分。</p>
+                </div>
+                <div class="btn-group">
+                    <button class="doc-btn" data-src="pdfs/tutoring_notes.pdf">查看家教笔记</button>
+                    <button class="doc-btn" data-src="images/campus/tutoring_result.jpg">查看家教成果</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 个人技能 -->
+        <div class="skills-section">
+            <div class="skills-title">个人技能</div>
+            <div class="skills-grid">
+                <!-- 语言技能 -->
+                <div class="skill-category">
+                    <h3>语言</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">CET-6 639分</span>
+                        <button class="doc-btn" data-src="pdfs/certs/cet6.pdf" style="margin-left: 0.2rem;">查看证书</button>
+                        <span class="skill-tag">托福 110分</span>
+                        <button class="doc-btn" data-src="pdfs/certs/toefl.pdf">查看成绩单</button>
+                        <br>
+                        <span class="skill-tag">日语 N3</span>
+                    </div>
+                </div>
+                <!-- 软件技能 -->
+                <div class="skill-category">
+                    <h3>软件与工具</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">Wind</span>
+                        <span class="skill-tag">iFind</span>
+                        <span class="skill-tag">Choice</span>
+                        <span class="skill-tag">Qeubee</span>
+                        <span class="skill-tag">Dealing Matrix</span>
+                        <span class="skill-tag">Ideal</span>
+                        <span class="skill-tag">Pr</span>
+                        <span class="skill-tag">Au</span>
+                        <span class="skill-tag">Melodyne</span>
+                        <span class="skill-tag">秀米</span>
+                        <span class="skill-tag">Office</span>
+                    </div>
+                </div>
+                <!-- 编程语言 -->
+                <div class="skill-category">
+                    <h3>编程</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Markdown</span>
+                        <span class="skill-tag">Stata</span>
+                    </div>
+                </div>
+                <!-- 兴趣爱好（含B站链接） -->
+                <div class="skill-category">
+                    <h3>兴趣爱好</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">游泳</span>
+                        <span class="skill-tag">排球</span>
+                        <span class="skill-tag">书法 (软笔业余8级)</span>
+                        <span class="skill-tag">电子琴 (业余10级)</span>
+                        <span class="skill-tag">
+                            唱歌
+                            <a href="https://space.bilibili.com/177241015" target="_blank" class="doc-btn" style="margin-left: 0.3rem;">B站主页</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            © 2025 魏心琪 | 最后更新 2026年5月
+        </footer>
+    </div>
+
+    <!-- 模态框（查看图片/PDF） -->
+    <div id="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+        <span id="modal-close" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <iframe id="modal-pdf" style="width:90%; height:90%; background:white;" frameborder="0"></iframe>
+        <img id="modal-img" style="max-width:90%; max-height:90%; display:none; margin:auto;">
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const modalPdf = document.getElementById('modal-pdf');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.getElementById('modal-close');
+
+        function openFile(src) {
+            if (src.toLowerCase().endsWith('.pdf')) {
+                modalPdf.style.display = 'block';
+                modalImg.style.display = 'none';
+                modalPdf.src = src;
+                modal.style.display = 'flex';
+            } else {
+                modalPdf.style.display = 'none';
+                modalImg.style.display = 'block';
+                modalImg.src = src;
+                modal.style.display = 'flex';
+            }
+        }
+
+        document.querySelectorAll('.doc-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const src = this.getAttribute('data-src');
+                if (src) {
+                    openFile(src);
+                } else {
+                    alert('文件暂未上传');
+                }
+            });
+        });
+
+        closeBtn.onclick = () => {
+            modal.style.display = 'none';
+            modalPdf.src = '';
+            modalImg.src = '';
+        };
+        window.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalPdf.src = '';
+                modalImg.src = '';
+            }
+        };
+    </script>
 </body>
 </html>
