@@ -18,7 +18,7 @@
             line-height: 1.5;
         }
 
-        /* 导航栏 (与首页一致) */
+        /* 导航栏 */
         .navbar {
             border-bottom: 1px solid #e2e8f0;
             padding: 1rem 0;
@@ -58,17 +58,22 @@
             padding-left: 1rem;
         }
 
-        /* 时间轴条目 */
+        /* 时间轴整体容器 */
+        .timeline {
+            margin-bottom: 2rem;
+        }
+
+        /* 每个条目 */
         .timeline-item {
             display: flex;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        /* 左侧时间轴装饰 */
+        /* 左侧时间 + 竖线圆点 */
         .timeline-left {
             flex-shrink: 0;
-            width: 80px;
+            width: 85px;
             text-align: right;
             font-family: monospace;
             font-size: 0.85rem;
@@ -80,18 +85,19 @@
             content: "";
             position: absolute;
             right: -12px;
-            top: 8px;
+            top: 6px;
             width: 8px;
             height: 8px;
             background: #1a5d9c;
             border-radius: 50%;
+            z-index: 1;
         }
         .timeline-left::before {
             content: "";
             position: absolute;
             right: -8px;
-            top: 16px;
-            bottom: -20px;
+            top: 14px;
+            bottom: -24px;
             width: 1px;
             background: #e2e8f0;
         }
@@ -104,22 +110,11 @@
             flex: 1;
             padding-bottom: 0.5rem;
         }
-        .edu-title {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
-        }
         .edu-name {
             font-size: 1.2rem;
             font-weight: 600;
             color: #111;
-        }
-        .edu-date {
-            font-size: 0.85rem;
-            color: #5a6e8a;
-            font-family: monospace;
+            margin-bottom: 0.25rem;
         }
         .edu-major {
             font-size: 0.9rem;
@@ -131,10 +126,10 @@
         .edu-stats {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.8rem;
             font-size: 0.85rem;
             color: #2c3e66;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         .edu-stats span {
             background: #f0f2f5;
@@ -156,9 +151,16 @@
             background: #f0f2f5;
         }
 
-        /* 核心课程部分 */
+        /* 高中/初中的简单描述（同样在右侧内） */
+        .simple-detail {
+            font-size: 0.9rem;
+            color: #2c3e66;
+            line-height: 1.5;
+        }
+
+        /* 核心课程区域（嵌套在右侧对齐的容器内） */
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 500;
             margin: 2rem 0 1rem 0;
             letter-spacing: -0.3px;
@@ -169,7 +171,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.6rem;
-            margin: 1rem 0 1.5rem 0;
+            margin: 1rem 0 0.5rem 0;
         }
         .course-tag {
             background: #f0f2f5;
@@ -179,7 +181,7 @@
             color: #2d4a6e;
         }
         .download-row {
-            margin: 0.5rem 0 1rem;
+            margin: 0.5rem 0 1.5rem;
         }
 
         /* 荣誉奖项 */
@@ -213,33 +215,6 @@
             background: #f0f2f5;
         }
 
-        /* 高中/初中单独样式（无时间轴点，但保持对齐） */
-        .simple-edu {
-            margin-bottom: 1.5rem;
-        }
-        .simple-header {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 0.3rem;
-        }
-        .simple-school {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .simple-date {
-            font-size: 0.8rem;
-            color: #5a6e8a;
-            font-family: monospace;
-        }
-        .simple-detail {
-            font-size: 0.85rem;
-            color: #3a5a7a;
-            margin-left: 1rem;
-            padding-left: 0.5rem;
-            border-left: 2px solid #e2e8f0;
-        }
-
         footer {
             border-top: 1px solid #e2e8f0;
             margin-top: 3rem;
@@ -251,14 +226,13 @@
 
         @media (max-width: 700px) {
             .container { padding: 1rem 1rem 2rem 1rem; }
-            .timeline-left { width: 60px; font-size: 0.7rem; }
+            .timeline-left { width: 65px; font-size: 0.7rem; }
             .edu-name { font-size: 1rem; }
             .nav-links { gap: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <div class="navbar">
         <div class="container" style="padding-top: 0; padding-bottom: 0;">
             <ul class="nav-links">
@@ -275,27 +249,49 @@
     <div class="container">
         <div class="page-title">教育经历</div>
 
-        <!-- 大学（时间轴样式） -->
-        <div class="timeline-item">
-            <div class="timeline-left">2023.09<br>至今</div>
-            <div class="timeline-right">
-                <div class="edu-title">
-                    <span class="edu-name">上海交通大学 · 安泰经济与管理学院</span>
-                    <span class="edu-date">2023.09 – 至今</span>
+        <!-- 时间轴区域：大学、高中、初中统一格式 -->
+        <div class="timeline">
+            <!-- 大学 -->
+            <div class="timeline-item">
+                <div class="timeline-left">2023.09<br>至今</div>
+                <div class="timeline-right">
+                    <div class="edu-name">上海交通大学 · 安泰经济与管理学院</div>
+                    <div class="edu-major">会计学（辅修：大数据管理与应用）</div>
+                    <div class="edu-stats">
+                        <span>GPA 4.02/4.30</span>
+                        <span>全部学积分 92.36/100</span>
+                        <span>专业排名 1/30</span>
+                    </div>
+                    <div class="download-row">
+                        <a href="pdfs/ranking_proof.pdf" class="download-link" target="_blank">下载排名证明</a>
+                    </div>
                 </div>
-                <div class="edu-major">会计学（辅修：大数据管理与应用）</div>
-                <div class="edu-stats">
-                    <span>GPA 4.02/4.30</span>
-                    <span>全部学积分 92.36/100</span>
-                    <span>专业排名 1/30</span>
+            </div>
+
+            <!-- 高中 -->
+            <div class="timeline-item">
+                <div class="timeline-left">2020.09<br>2023.06</div>
+                <div class="timeline-right">
+                    <div class="edu-name">上海交通大学附属中学嘉定分校</div>
+                    <div class="simple-detail">
+                        高考 593/660 | 上海市排名 965 | 物生地 | 英才班班长
+                    </div>
                 </div>
-                <div class="download-row">
-                    <a href="pdfs/ranking_proof.pdf" class="download-link" target="_blank">📄 下载排名证明</a>
+            </div>
+
+            <!-- 初中 -->
+            <div class="timeline-item">
+                <div class="timeline-left">2016.09<br>2020.06</div>
+                <div class="timeline-right">
+                    <div class="edu-name">上海市女子第三中学</div>
+                    <div class="simple-detail">
+                        中考 613.5/630 | 上海市长宁区状元 | 英语辩论社 | 英国泽西女子学校暑期交换
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 核心课程 -->
+        <!-- 核心课程（独立区块，但视觉上仍然在右侧区域内，靠左对齐） -->
         <div class="section-title">核心课程</div>
         <div class="course-list">
             <span class="course-tag">建模与优化 (98)</span>
@@ -312,29 +308,7 @@
             <span class="course-tag">管理学原理 (91)</span>
         </div>
         <div class="download-row">
-            <a href="pdfs/transcript.pdf" class="download-link" target="_blank">📊 下载成绩单</a>
-        </div>
-
-        <!-- 高中（简洁样式） -->
-        <div class="simple-edu">
-            <div class="simple-header">
-                <span class="simple-school">上海交通大学附属中学嘉定分校</span>
-                <span class="simple-date">2020.09 – 2023.06</span>
-            </div>
-            <div class="simple-detail">
-                高考 593/660 | 上海市排名 965 | 物生地 | 英才班班长
-            </div>
-        </div>
-
-        <!-- 初中 -->
-        <div class="simple-edu">
-            <div class="simple-header">
-                <span class="simple-school">上海市女子第三中学</span>
-                <span class="simple-date">2016.09 – 2020.06</span>
-            </div>
-            <div class="simple-detail">
-                中考 613.5/630 | 上海市长宁区状元 | 英语辩论社 | 英国泽西女子学校暑期交换
-            </div>
+            <a href="pdfs/transcript.pdf" class="download-link" target="_blank">下载成绩单</a>
         </div>
 
         <!-- 荣誉奖项 -->
@@ -353,20 +327,18 @@
         </footer>
     </div>
 
-    <!-- 模态框（查看证书图片） -->
+    <!-- 模态框 -->
     <div id="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
         <span id="modal-close" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
         <img id="modal-img" style="max-width:90%; max-height:90%; margin:auto; display:block;">
     </div>
 
     <script>
-        // 模态框逻辑
         const modal = document.getElementById('modal');
         const modalImg = document.getElementById('modal-img');
         const closeBtn = document.getElementById('modal-close');
-
         document.querySelectorAll('.award-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', function() {
                 const src = this.getAttribute('data-src');
                 if (src) {
                     modal.style.display = 'flex';
