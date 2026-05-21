@@ -18,7 +18,6 @@
             line-height: 1.5;
         }
 
-        /* 导航栏 */
         .navbar {
             border-bottom: 1px solid #e2e8f0;
             padding: 1rem 0;
@@ -57,7 +56,6 @@
             padding-left: 1rem;
         }
 
-        /* 时间轴 */
         .timeline-item {
             display: flex;
             gap: 1.5rem;
@@ -100,13 +98,13 @@
             flex: 1;
             padding-bottom: 0.5rem;
         }
-        .job-title {
-            font-size: 1.1rem;
+        .company {
+            font-size: 1rem;
             font-weight: 600;
             color: #111;
             margin-bottom: 0.25rem;
         }
-        .company {
+        .job-title {
             font-size: 0.9rem;
             color: #3a5a7a;
             margin-bottom: 0.5rem;
@@ -157,7 +155,8 @@
         @media (max-width: 700px) {
             .container { padding: 1rem 1rem 2rem 1rem; }
             .timeline-left { width: 65px; font-size: 0.7rem; }
-            .job-title { font-size: 1rem; }
+            .company { font-size: 0.95rem; }
+            .job-title { font-size: 0.85rem; }
             .nav-links { gap: 1rem; }
         }
     </style>
@@ -183,8 +182,8 @@
         <div class="timeline-item">
             <div class="timeline-left">2026.04<br>至今</div>
             <div class="timeline-right">
-                <div class="job-title">利率债研究助理</div>
                 <div class="company">中泰证券股份有限公司 · 研究所</div>
+                <div class="job-title">利率债研究助理</div>
                 <div class="job-description">
                     <p>刚入职不久，主要负责每日现券成交分机构统计、每周流动性与机构行为跟踪。</p>
                 </div>
@@ -195,8 +194,8 @@
         <div class="timeline-item">
             <div class="timeline-left">2025.10<br>2026.01</div>
             <div class="timeline-right">
-                <div class="job-title">财务应收实习生</div>
                 <div class="company">安德普翰人力资源服务(上海)有限公司 · 财务营收部门</div>
+                <div class="job-title">财务应收实习生</div>
                 <div class="job-description">
                     <p>独立负责美元账户资金归集与Oracle系统入账维护，累计完成资金入账1000+笔，完成中澳区域回款核销2000+笔。</p>
                     <p>对接中、美、澳、日、印及东南亚等多国客户，统筹采购订单（PO）审核与全流程账务处理，参与应收账款账龄分析。</p>
@@ -213,8 +212,8 @@
         <div class="timeline-item">
             <div class="timeline-left">2025.07<br>2025.09</div>
             <div class="timeline-right">
-                <div class="job-title">债券投研实习生</div>
                 <div class="company">东海证券股份有限公司 · 投资交易部</div>
+                <div class="job-title">债券投研实习生</div>
                 <div class="job-description">
                     <p>跟踪债市与行业动态，撰写50+份债市日报、周报复盘，协助研究员完成点评及专题报告。</p>
                     <p>每日汇总信用债与利率债一级发行信息，运用Python自动化工作流程，整理复盘现券持仓相关数据。</p>
@@ -232,8 +231,8 @@
         <div class="timeline-item">
             <div class="timeline-left">2024.07<br>2024.09</div>
             <div class="timeline-right">
-                <div class="job-title">债券交易助理</div>
                 <div class="company">国泰君安证券股份有限公司 · 固定收益部</div>
+                <div class="job-title">债券交易助理</div>
                 <div class="job-description">
                     <p>负责资金正逆回购、现券交易、债券借贷、托管、回售等全业务交易执行，日均处理60+笔业务，对接客户开展代投业务。</p>
                     <p>每日汇总利率债一级发行信息，累计整理100+条发行数据，协助客盘与自营账户投标，协助管理20亿+量级头寸。</p>
@@ -252,8 +251,8 @@
         <div class="timeline-item">
             <div class="timeline-left">2024.01<br>2024.02</div>
             <div class="timeline-right">
-                <div class="job-title">债券投资实习生</div>
                 <div class="company">温州银行上海分行 · 金融市场部</div>
+                <div class="job-title">债券投资实习生</div>
                 <div class="job-description">
                     <p>完整了解债券发行与承销业务流程，参与项目投标及开户相关工作，收集相关企业数据，跟进贷后情况并撰写贷后报告。</p>
                     <p>熟练使用企业预警通、Wind等工具，熟悉银行金市业务，提升企业数据搜集、贷后风险梳理与基础财务分析能力。</p>
@@ -269,7 +268,7 @@
         </footer>
     </div>
 
-    <!-- 模态框（用于显示PDF或图片） -->
+    <!-- 模态框 -->
     <div id="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
         <span id="modal-close" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
         <iframe id="modal-pdf" style="width:90%; height:90%; background:white;" frameborder="0"></iframe>
@@ -277,7 +276,6 @@
     </div>
 
     <script>
-        // 统一处理按钮：如果是.pdf 则用iframe显示，否则图片
         const modal = document.getElementById('modal');
         const modalPdf = document.getElementById('modal-pdf');
         const modalImg = document.getElementById('modal-img');
