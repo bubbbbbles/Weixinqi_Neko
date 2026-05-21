@@ -2,183 +2,361 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>魏心琪 · 两栏布局</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>魏心琪 · 个人主页</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #fefefe;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: #1f1f1f;
+            background-color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.5;
         }
-        .grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.8fr;
-            gap: 3rem;
-            padding: 3rem 2rem;
-        }
-        .left {
-            border-right: 1px solid #e2e2e2;
-            padding-right: 2rem;
-        }
-        .name {
-            font-size: 2.2rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-        .school {
-            font-size: 0.85rem;
-            color: #555;
+
+        /* 导航栏 */
+        .navbar {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 0;
             margin-bottom: 1rem;
         }
-        .tag-list {
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e66;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #1a5d9c;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem 2rem;
+        }
+
+        /* 头部区域：左侧文字 + 右侧证件照 */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        .hero-left {
+            flex: 1;
+        }
+        .hero-right {
+            flex-shrink: 0;
+        }
+        .photo-id {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            color: #2c3e66;
+            margin-bottom: 1rem;
+            border-left: 3px solid #1a5d9c;
+            padding-left: 1rem;
+        }
+
+        .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #2a5c8a;
+            gap: 0.8rem;
+            margin: 1rem 0 1.2rem 0;
+            font-size: 0.9rem;
+            color: #3a5a7a;
         }
-        .tag-list span {
-            border-right: 1px solid #ccc;
-            padding-right: 0.6rem;
+
+        .tag-item {
+            background: #f0f2f5;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
-        .tag-list span:last-child { border-right: none; }
+
+        /* 按钮组 */
         .btn-group {
             display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin: 1.5rem 0;
+            gap: 1rem;
+            margin: 1.5rem 0 1.2rem 0;
+            flex-wrap: wrap;
         }
         .btn {
+            background: #1a5d9c;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
             text-decoration: none;
-            border: 1px solid #1a5d9c;
-            padding: 0.5rem 1rem;
-            text-align: center;
-            font-size: 0.8rem;
-            background: transparent;
-            color: #1a5d9c;
-            transition: 0.2s;
+            display: inline-block;
         }
         .btn:hover {
+            background: #0e3e6b;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #1a5d9c;
+            color: #1a5d9c;
+        }
+        .btn-outline:hover {
             background: #1a5d9c;
             color: white;
         }
-        .contact-info {
-            font-size: 0.8rem;
-            line-height: 1.8;
-            color: #3a3a3a;
-            border-top: 1px solid #ececec;
-            padding-top: 1rem;
-            margin-top: 0.5rem;
-        }
-        .right {
-            overflow: hidden;
-        }
-        .bio {
+
+        /* 联系方式行 */
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
             font-size: 0.9rem;
+            color: #4a5568;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.8rem 0;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .contact-item::before {
+            content: "·";
+            font-weight: 600;
+            margin-right: 0.2rem;
+        }
+        .contact-item:first-child::before {
+            content: "";
+            margin-right: 0;
+        }
+
+        /* 自我介绍 */
+        .bio {
+            margin: 2rem 0 2rem 0;
+            font-size: 1rem;
+            color: #2d3748;
             line-height: 1.6;
-            margin-bottom: 2rem;
         }
         .bio p {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 生活照片滚动区 */
+        .photos-section {
+            margin: 2.5rem 0;
         }
         .section-title {
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             font-weight: 500;
-            margin-bottom: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-        .scroll-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 0.8rem;
-            padding-bottom: 0.5rem;
-        }
-        .scroll-container img {
-            height: 180px;
-            width: auto;
-            object-fit: cover;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
         }
         .scroll-wrapper {
             position: relative;
         }
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 1rem;
+            padding-bottom: 0.5rem;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+        .scroll-container::-webkit-scrollbar {
+            height: 5px;
+        }
+        .scroll-container::-webkit-scrollbar-track {
+            background: #f0f2f5;
+            border-radius: 10px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+        .photo-card {
+            flex: 0 0 auto;
+            width: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fafbfc;
+        }
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.2s;
+        }
+        .photo-card img:hover {
+            transform: scale(1.02);
+        }
         .scroll-btn {
             position: absolute;
-            top: 40%;
+            top: 50%;
+            transform: translateY(-50%);
             background: white;
-            border: 1px solid #ddd;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            z-index: 2;
         }
-        .scroll-left { left: 0px; top: -30px; }
-        .scroll-right { right: 0px; top: -30px; }
+        .scroll-btn:hover {
+            background: #f0f2f5;
+        }
+        .scroll-left {
+            left: -18px;
+        }
+        .scroll-right {
+            right: -18px;
+        }
+
         footer {
-            grid-column: 1 / -1;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
             text-align: center;
-            font-size: 0.7rem;
-            color: #aaa;
-            border-top: 1px solid #eaeaea;
-            padding-top: 2rem;
-            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #7f8c8d;
         }
-        @media (max-width: 800px) {
-            .grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
-            .left { border-right: none; }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem 1rem 2rem 1rem; }
+            .name { font-size: 2rem; }
+            .hero-right { margin-top: 1rem; }
+            .photo-id { width: 100px; height: 100px; }
+            .scroll-left { left: -10px; }
+            .scroll-right { right: -10px; }
+            .scroll-btn { width: 30px; height: 30px; }
+            .nav-links { gap: 1rem; }
         }
     </style>
 </head>
 <body>
-<div class="grid">
-    <div class="left">
-        <div class="name">魏心琪 <span style="font-weight:normal;">Samantha</span></div>
-        <div class="school">上海交通大学 · 安泰经管 · 会计学（大数据辅修）</div>
-        <div class="tag-list">
-            <span>rank 1/30</span><span>国奖</span><span>二级固收</span><span>中考状元</span><span>ISFJ</span>
-        </div>
-        <div class="btn-group">
-            <a href="pdfs/resume_cn.pdf" class="btn" download>下载中文简历</a>
-            <a href="pdfs/resume_en.pdf" class="btn" download>下载英文简历</a>
-        </div>
-        <div class="contact-info">
-            NKH_wxq@sjtu.edu.cn<br>
-            17321248009<br>
-            微信 _22-12-31_<br>
-            Base 上海
+    <!-- 导航菜单 -->
+    <div class="navbar">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="education.html">教育经历</a></li>
+                <li><a href="internships.html">实习经历</a></li>
+                <li><a href="projects.html">研究项目</a></li>
+                <li><a href="campus.html">校园与社会</a></li>
+                <li><a href="resources.html">资源下载</a></li>
+            </ul>
         </div>
     </div>
-    <div class="right">
-        <div class="bio">
-            <p>我是魏心琪，交大安泰会计学辅修大数据。专业第一，国奖获得者。三段固收实习（银行/券商），从承销发行到二级交易、头寸管理。</p>
-            <p>作为组长完成PRP科研项目（A级），坚持一年无偿家教，学生中考英语提升30+分。国泰海通实习期间编写7000字图文手册，现用于指导新同学。</p>
-            <p>托福110 / 六级639，日语N3水平。喜欢游泳、书法、电子琴。</p>
-        </div>
-        <div class="section-title">生活随拍</div>
-        <div class="scroll-wrapper">
-            <div class="scroll-btn scroll-left" id="leftB">←</div>
-            <div class="scroll-btn scroll-right" id="rightB">→</div>
-            <div class="scroll-container" id="scrollB">
-                <img src="images/life1.jpg" onerror="this.src='https://placehold.co/300x180?text=1'">
-                <img src="images/life2.jpg" onerror="this.src='https://placehold.co/300x180?text=2'">
-                <img src="images/life3.jpg" onerror="this.src='https://placehold.co/300x180?text=3'">
-                <img src="images/life4.jpg" onerror="this.src='https://placehold.co/300x180?text=4'">
+
+    <div class="container">
+        <!-- 头部：左侧文字 + 右侧证件照 -->
+        <div class="hero">
+            <div class="hero-left">
+                <div class="name">魏心琪 (Samantha)</div>
+                <div class="title">上海交通大学 · 安泰经济与管理学院 · 会计学（辅修大数据管理与应用）</div>
+                <div class="tags">
+                    <span class="tag-item">专业排名 rank 1</span>
+                    <span class="tag-item">国家奖学金</span>
+                    <span class="tag-item">求职方向：二级固收</span>
+                    <span class="tag-item">中考状元</span>
+                    <span class="tag-item">ISFJ</span>
+                </div>
+                <div class="btn-group">
+                    <a href="pdfs/resume_cn.pdf" class="btn" download>下载中文简历</a>
+                    <a href="pdfs/resume_en.pdf" class="btn btn-outline" download>下载英文简历</a>
+                </div>
+                <div class="contact">
+                    <span class="contact-item">邮箱：NKH_wxq@sjtu.edu.cn</span>
+                    <span class="contact-item">电话：17321248009</span>
+                    <span class="contact-item">微信：_22-12-31_</span>
+                    <span class="contact-item">Base 上海</span>
+                </div>
+            </div>
+            <div class="hero-right">
+                <!-- 证件照：请将你的证件照命名为 zhengjianzhao.jpg 并放入 images 文件夹 -->
+                <img class="photo-id" src="images/zhengjianzhao.jpg" alt="证件照" onerror="this.src='https://placehold.co/130x130?text=Photo'">
             </div>
         </div>
+
+        <!-- 自我介绍 -->
+        <div class="bio">
+            <p>Hi，我是魏心琪，来自上海交通大学安泰经济与管理学院，会计学专业，辅修大数据。我是一个踏实、热忱、有责任心的人。</p>
+            <p>踏实是我的底色。在专业学习上，我成绩位列专业第一，我始终保持严谨专注的态度完成课内学习，并获得国家奖学金、三好学生等多项荣誉。同时，我积极投身学科竞赛与科研探索：在第九届安泰杯上市公司分析挑战赛中我与团队携手获得优秀表现奖；在大学生英语竞赛中，我获得二等奖；此外，我还参加了校内prp科研项目，利用大语言模型分析上市公司财报，我作为组长带领团队推进研究，推动项目顺利落地，最后取得A的成绩。</p>
+            <p>热忱则是我驱动自我不断探索、回馈他人的核心动力。在实习实践中，我先后完成四段固收相关工作：第一段实习，我去到了银行金市，深入参与债券投标，了解债券发行与承销 业务流程；之后我去到了国泰君安（国泰海通）FICC部，我快速熟悉多种债券交易业务，比如现券交易、资金正逆回购、组合交易、借贷回售等，协助完成交易指令执行与风险监控，此外我还参与头寸管理以及客户代投。此外，我还去到了东海证券的债券投交部，除了整理一级发行债券之外，我每日还对整体债市从资金面、利率债信用债、一些宏观、行业新闻等方面进行复盘报告撰写，为对固收市场整体认知提升。目前我正在中泰证券的研究所进行利率债的研究中，目前主要负责每日现券成交分机构统计、每周的流动性与机构行为跟踪，具体关注货币资金基本面包括公开市场操作、大行融出、资金价格，以及同业存单与票据，包括发行情况以及利率走势情况等。</p>
+            <p>除了实习领域，我也在回馈社会方面怀揣着热忱。在过去一年半中，我一直在为两位困境家庭儿童提供无偿英语家教，其中一位初三女生在中考实现超过30分的分数提升；在学生工作中，我也参与我院的新媒体工作部以及青志队，多次组织参加活动，如中福会义卖、安泰战略发展会议，为学院的发展贡献出自己的力量。</p>
+            <p>除此之外，我的英语不错（托福110，六级639），还自学了日语。平时喜欢游泳、书法、电子琴。如果你想聊聊固收、学业，或者单纯交个朋友，欢迎随时联系我。</p>
+        </div>
+
+        <!-- 生活照片滚动区 --> 
+        <div class="photos-section">
+            <div class="section-title">生活碎片</div>
+            <div class="scroll-wrapper">
+                <div class="scroll-btn scroll-left" id="scrollLeftBtn">←</div>
+                <div class="scroll-container" id="scrollContainer">
+                    <div class="photo-card"><img src="images/life1.jpg" alt="生活照1" onerror="this.src='https://placehold.co/280x200?text=Photo+1'"></div>
+                    <div class="photo-card"><img src="images/life2.jpg" alt="生活照2" onerror="this.src='https://placehold.co/280x200?text=Photo+2'"></div>
+                    <div class="photo-card"><img src="images/life3.jpg" alt="生活照3" onerror="this.src='https://placehold.co/280x200?text=Photo+3'"></div>
+                    <div class="photo-card"><img src="images/life4.jpg" alt="生活照4" onerror="this.src='https://placehold.co/280x200?text=Photo+4'"></div>
+                </div>
+                <div class="scroll-btn scroll-right" id="scrollRightBtn">→</div>
+            </div>
+            <p style="font-size:0.75rem; color:#94a3b8; margin-top:0.5rem;">← 左右滑动查看更多照片</p>
+        </div>
+
+        <footer>
+            © 2025 魏心琪 | 最后更新 2026年5月
+        </footer>
     </div>
-    <footer>© 2025 魏心琪 · 上海</footer>
-</div>
-<script>
-    const sb = document.getElementById('scrollB');
-    document.getElementById('leftB').onclick = () => sb.scrollBy({ left: -260, behavior: 'smooth' });
-    document.getElementById('rightB').onclick = () => sb.scrollBy({ left: 260, behavior: 'smooth' });
-</script>
+
+    <script>
+        const container = document.getElementById('scrollContainer');
+        const leftBtn = document.getElementById('scrollLeftBtn');
+        const rightBtn = document.getElementById('scrollRightBtn');
+        leftBtn.addEventListener('click', () => {
+            container.scrollBy({ left: -280, behavior: 'smooth' });
+        });
+        rightBtn.addEventListener('click', () => {
+            container.scrollBy({ left: 280, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
