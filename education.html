@@ -325,22 +325,35 @@
     </div>
 
     <script>
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modal-img');
-        const closeBtn = document.getElementById('modal-close');
-        document.querySelectorAll('.award-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const src = this.getAttribute('data-src');
-                if (src) {
-                    modal.style.display = 'flex';
-                    modalImg.src = src;
-                } else {
-                    alert('证书图片暂未上传');
-                }
-            });
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeBtn = document.getElementById('modal-close');
+
+    function openFile(src) {
+        window.open(src, '_blank');
+    }
+
+    document.querySelectorAll('.award-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const src = this.getAttribute('data-src');
+            if (src) {
+                openFile(src);
+            } else {
+                alert('文件暂未上传');
+            }
         });
-        closeBtn.onclick = () => { modal.style.display = 'none'; };
-        window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
-    </script>
+    });
+
+    closeBtn.onclick = () => {
+        modal.style.display = 'none';
+        modalImg.src = '';
+    };
+    window.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            modalImg.src = '';
+        }
+    };
+</script>
 </body>
 </html>
